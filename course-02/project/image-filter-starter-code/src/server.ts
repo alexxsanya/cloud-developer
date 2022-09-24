@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -29,6 +29,26 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
+  app.get("/filteredimage",async (req:Request, res:Response) => {
+    const { image_url } = req.query
+
+    if(!image_url || !image_url.startsWith('https')) {
+      return res.status(400).send({message:"image_url must be a valid secure URL of the image"})
+    }
+
+    filterImageFromURL(image_url)
+      .then(img => {
+        res.sendFile(img, () => {
+          const images:Array<string> = new Array(img)
+
+          deleteLocalFiles(images)
+        })
+      })
+      .catch(err => {
+        res.status(500).send({message: "Something wrong happend"})
+      })
+
+  })
   //! END @TODO1
   
   // Root Endpoint
