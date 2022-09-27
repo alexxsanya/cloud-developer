@@ -7,4 +7,8 @@ GET https://img-filter-starter-code.us-east-1.elasticbeanstalk.com/filteredimage
 
 
 ## Example Request
-https://img-filter-starter-code.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://divoora.ch/assets/index/flymen-divoora.png
+http://img-filter-starter-code.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://divoora.ch/assets/index/flymen-divoora.png
+
+
+## deployment screenshot
+<img src="Screenshot.png">
